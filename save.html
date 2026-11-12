@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; img-src data:; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" href="data:,">
+<title>OKShip test fixture: save</title>
+</head>
+<body>
+<main>
+<h1>Settings</h1>
+<p>This page is a public test fixture for OKShip. It stores nothing and sends nothing.</p>
+<button type="button" id="save">Save</button>
+<p id="status" role="status" aria-live="polite"></p>
+</main>
+<script>
+// The button label comes from ?label=... (default "Save"). textContent only: never parsed as HTML.
+(function () {
+  var label = new URLSearchParams(window.location.search).get("label");
+  var button = document.getElementById("save");
+  if (label) button.textContent = label.slice(0, 40);
+  button.addEventListener("click", function () {
+    document.getElementById("status").textContent = "Saved.";
+  });
+})();
+</script>
+</body>
+</html>
